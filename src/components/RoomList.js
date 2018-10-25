@@ -3,7 +3,7 @@ import CreateRoom from './CreateRoom';
 
 class RoomList extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       rooms: [],
       showCreate: false,
@@ -45,7 +45,10 @@ class RoomList extends Component {
   render() {
     return (
       <div className="room-list">
-        <h1>Bloc Chat</h1>
+        <div className="room-header">
+          <h1>Bloc Chat</h1>
+          <button className="create-room-button" type="button" onClick={() => this.createRoom()}>Create a room</button>
+        </div>
         <CreateRoom
           show={this.state.showCreate}
           cancelRoom={() => this.cancelRoom()}>
@@ -54,17 +57,14 @@ class RoomList extends Component {
               New room:
               <input type="text" value={this.state.newRoom} onChange={e => this.handleRoomInput(e)}/>
             </label>
-              <input type="submit" value="Create room"/>
+            <input type="submit" value="Create room"/>
           </form>
         </CreateRoom>
-        <button className="create-room-button" type="button" onClick={() => this.createRoom()}>Create a room</button>
-        <ul>
-          {this.state.rooms.map( room =>
-            <li className='room-row' key={room.key}>
-              {room.name}
-            </li>
-          )}
-        </ul>
+        {this.state.rooms.map( room =>
+          <div className={(this.props.activeRoom === room.key) ? "active-room room-row" : "room-row"} key={room.key} onClick={() => this.props.handleActiveRoom(room.key)}>
+            {room.name}
+          </div>
+        )}
       </div>
     );
   }

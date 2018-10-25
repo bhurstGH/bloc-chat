@@ -1,9 +1,61 @@
+.App {
+  display: flex;
+  flex-flow: row-wrap;
+  flex: 2 auto;
+  border-bottom: 1px solid black;
+  min-height: 400px;
+}
+
+.App > * {
+
+}
+
+ul {
+  list-style: none;
+  text-align:left;
+}
+
+.room-list {
+  flex: 1;
+  order: 1;
+  border-right: 1px solid black;
+  max-width: 250px;
+  min-width: 200px;
+}
+ .room-header {
+   text-align: center;
+   color: white;
+   height: 100px;
+   background: blue;
+ }
+
+.room-header h1 {
+  margin: auto;
+}
+
+.message-list {
+  flex: 2;
+  order: 2;
+  align-self: flex-end;
+}
+.create-room-button {
+  width: 100px;
+  height: 50px;
+  margin: 5px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  background: orange;
+  text-shadow: 0 0 10px blue;
+}
+
 .do-display {
-  display: block;
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .do-not-display {
@@ -14,41 +66,17 @@
   position: fixed;
   background: white;
   border: 1px solid black;
-  width: 50%;
-  top: 50%;
+  width: 250px;
+  top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
+
 }
 
-.App {
-  text-align: center;
+.active-room {
+  background: #cccccc;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
+.room-row {
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
