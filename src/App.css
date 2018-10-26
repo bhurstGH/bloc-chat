@@ -2,8 +2,11 @@
   display: flex;
   flex-flow: row-wrap;
   flex: 2 auto;
-  border-bottom: 1px solid black;
+  margin: 20px auto;
+  border: 1px solid black;
+  border-radius: 5px;
   min-height: 400px;
+  max-width: 1000px;
 }
 
 .App > * {
@@ -19,7 +22,7 @@ ul {
   flex: 1;
   order: 1;
   border-right: 1px solid black;
-  max-width: 250px;
+  max-width: 200px;
   min-width: 200px;
 }
  .room-header {
@@ -37,7 +40,9 @@ ul {
   flex: 2;
   order: 2;
   align-self: flex-end;
+  min-width: 400px;
 }
+
 .create-room-button {
   width: 100px;
   height: 50px;
@@ -79,4 +84,31 @@ ul {
 
 .room-row {
 
+}
+
+.user-list {
+  flex: 1;
+  order: 3;
+  border-left: 1px solid black;
+  max-width: 200px;
+  min-width: 200px;
+}
+
+.user-header {
+  height: 100px;
+  background: orange;
+
+}
+
+.user {
+
+}
+
+.user img {
+  width: 32px;
+  height: 32px;
+}
+
+.user-button {
+  display: block;
 }
