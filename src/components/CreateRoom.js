@@ -7,7 +7,7 @@ const CreateRoom = ({ show, cancelRoom, children }) => {
     <div className={displayClass} onClick={cancelRoom}>
       <section className="create-room-modal" onClick={(e) => e.stopPropagation()}>
         {children}
-        <button onClick={cancelRoom}>Cancel room creation</button>
+        <button className="cancel-room-button" onClick={cancelRoom}>Cancel room creation</button>
       </section>
     </div>
   );

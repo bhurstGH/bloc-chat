@@ -99,6 +99,7 @@ ul {
   order: 2;
   flex: 1 auto;
 }
+
 .create-room-button {
   width: 100px;
   height: 50px;
@@ -118,20 +119,56 @@ ul {
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
 }
-
 .do-not-display {
   display: none;
 }
 
 .create-room-modal {
   position: fixed;
-  background: white;
-  border: 1px solid black;
+  color: white;
+  background: transparent;
   width: 250px;
+  height: 75px;
   top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.cancel-room-button {
+  position: fixed;
+  top: 135%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ef9d01;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: 14px;
+}
 
+.create-room-form {
+  display: contents;
+}
+.create-room-form input[type="text"] {
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid white;
+  border-radius: 5px;
+  background-image: linear-gradient(to top, white 1%, rgba(0, 0, 0, 0.5));
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.create-room-form input[type="submit"] {
+  color: #ef9d01;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: 14px;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .active-room {
