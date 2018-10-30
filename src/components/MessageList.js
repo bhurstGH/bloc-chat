@@ -4,7 +4,7 @@ class MessageList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: []
+      messages: [],
     };
 
     this.messagesRef = this.props.firebase.database().ref('messages');
@@ -12,6 +12,7 @@ class MessageList extends Component {
 
   componentDidMount() {
     this.getMessages();
+    this.scrollToLast();
   }
 
   componentDidUpdate(prevProps) {
@@ -19,6 +20,7 @@ class MessageList extends Component {
       this.clearMessages();
       this.getMessages();
     }
+    this.scrollToLast();
   }
 
   getMessages() {
@@ -34,14 +36,35 @@ class MessageList extends Component {
     this.setState({ messages: [] })
   }
 
+scrollToLast() {
+  this.last.scrollIntoView();
+}
+
+  localTimeStamp(time) {
+    let timestamp = new Date(time);
+    let hours = timestamp.getHours();
+    let minutes = timestamp.getMinutes();
+    let ampm = hours > 11 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    let datestamp = `${timestamp.getMonth()}/${timestamp.getDate()}/${timestamp.getFullYear()}`;
+    return `${hours}:${minutes}${ampm} ${datestamp}`;
+  }
+
   render() {
     return (
       <div className="message-list">
         {this.state.messages.map( message =>
           <div className="message-item" key={message.key}>
-            {message.username + ": " + message.content + "(" + message.sentAt + ")"}
+            <span className="message-username">{message.username + ": "}</span>
+            <p className="message-content">
+              {message.content}
+            </p>
+            <span className="message-sentAt">{"(" + this.localTimeStamp(message.sentAt) + ")"}</span>
           </div>
         )}
+        <div ref={last => { this.last = last; }} />
       </div>
     );
   }

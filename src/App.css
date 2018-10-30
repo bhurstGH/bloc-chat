@@ -1,17 +1,19 @@
 .App {
   display: flex;
-  flex-flow: row-wrap;
-  flex: 2 auto;
+  flex-flow: row;
   margin: 20px auto;
   border: 1px solid black;
   border-radius: 5px;
+  max-height: 400px;
   min-height: 400px;
   max-width: 1000px;
+  min-width: 802px;
+  background: #f1f1f1;
 }
 
-.App > * {
-
-}
+/* .App > * {
+  flex: 1 100%;
+} */
 
 ul {
   list-style: none;
@@ -21,10 +23,11 @@ ul {
 .room-list {
   flex: 1;
   order: 1;
-  border-right: 1px solid black;
+  border-right: 1px solid lightgray;
   max-width: 200px;
   min-width: 200px;
 }
+
  .room-header {
    text-align: center;
    color: white;
@@ -36,13 +39,66 @@ ul {
   margin: auto;
 }
 
-.message-list {
-  flex: 2;
+#messages {
+  flex: 2 auto;
   order: 2;
-  align-self: flex-end;
   min-width: 400px;
+  padding: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+}
+.message-list {
+  flex: 0 auto;
+  order: 1;
+  overflow-y: auto;
+}
+.message-item {
+  padding: 5px;
+}
+.message-content {
+  display: inline;
+  padding: 2px;
+  white-space: pre-line;
+}
+.message-username {
+  padding: 2px;
+  border-radius: 5px;
+  background: #18a9d5;
+}
+.message-sentAt {
+  display: block;
+  margin-top: 2px;
+  color: teal;
+  font-size: 10px;
 }
 
+.send-message {
+  flex: 1 auto;
+  order: 2;
+  min-width: 400px;
+  max-height: 35px;
+}
+#send-form {
+  display: flex;
+  flex-flow: row;
+}
+#send-content {
+  resize: none;
+  border: none;
+  margin: 0;
+  padding: 1;
+  outline: none;
+  order: 1;
+  flex: 5 auto;
+}
+#send-submit {
+  color: white;
+  background: blue;
+  border: none;
+  order: 2;
+  flex: 1 auto;
+}
 .create-room-button {
   width: 100px;
   height: 50px;
@@ -50,8 +106,8 @@ ul {
   border: none;
   border-radius: 10px;
   font-size: 16px;
-  background: orange;
-  text-shadow: 0 0 10px blue;
+  background: #ef9d01;
+  text-shadow: 1px 1px 4px blue;
 }
 
 .do-display {
@@ -79,36 +135,63 @@ ul {
 }
 
 .active-room {
-  background: #cccccc;
+  color: white;
+  background: #ef9d01;
+}
+
+.active-room::after {
+  content: ' >>>';
 }
 
 .room-row {
-
+  padding: 5px;
 }
 
 .user-list {
   flex: 1;
   order: 3;
-  border-left: 1px solid black;
+  border-left: 1px solid lightgray;
   max-width: 200px;
   min-width: 200px;
+  overflow: hidden;
 }
 
 .user-header {
+  max-width: inherit;
+  min-width: inherit;
   height: 100px;
-  background: orange;
-
+  background: #ef9d01;
 }
 
 .user {
+  padding: 5px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+}
 
+.user > * {
+  flex: 1 0 auto;
+}
+
+.user-name {
+  order: 2;
+}
+
+.user-pic {
+  order: 1;
+  height: 40px;
 }
 
 .user img {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
 }
 
 .user-button {
-  display: block;
+  order: 3;
+  flex: 0 auto;
+  width: 75px;
+  height: 25px;
+  align-self: flex-end;
 }

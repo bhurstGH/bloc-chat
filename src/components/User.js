@@ -7,8 +7,8 @@ const User = props => {
 
   return (
     <div className='user'>
-      {userName}
-      {profilePic}
+      <div className="user-name">{userName}</div>
+      <div className='user-pic'>{profilePic}</div>
       <button className="user-button" onClick={() => props.signInOut()}>{(props.user) ? 'Sign Out' : 'Sign In'}</button>
     </div>
   );

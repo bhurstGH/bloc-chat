@@ -4,10 +4,7 @@ import User from './User';
 class UserList extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
-
     this.provider = new props.firebase.auth.GoogleAuthProvider();
-
   };
 
   componentDidMount() {
