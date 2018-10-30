@@ -27,14 +27,12 @@ ul {
   max-width: 200px;
   min-width: 200px;
 }
-
- .room-header {
+.room-header {
    text-align: center;
    color: white;
    height: 100px;
    background: blue;
  }
-
 .room-header h1 {
   margin: auto;
 }
@@ -175,13 +173,43 @@ ul {
   color: white;
   background: #ef9d01;
 }
-
 .active-room::after {
-  content: ' >>>';
+  content: ' >';
+}
+.delete-room {
+  text-align: center;
+  width: .6em;
+  height: 1em;
+  border: 1px solid darkorange;
+  font-family: monospace, sans-serif;
+  font-weight: bold;
+  background: transparent;
+  display: inline-block;
+  position: absolute;
+  right: 1px;
+  transition: all 0.25s ease-out 0.2s;
+}
+.delete-room:hover {
+  transform: scale(1.5);
+  width: 75px;
+  border: 2px solid blue;
+  border-radius: 5px;
+  background: orange;
+}
+.delete-room::after {
+  content: 'elete';
+
+  transition: all 0.1s linear 0.1s;
+  opacity: 0;
+}
+.delete-room:hover::after {
+  transition: all 0.3s ease-out 0.3s;
+  opacity: 1;
 }
 
 .room-row {
   padding: 5px;
+  position: relative;
 }
 
 .user-list {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CreateRoom from './CreateRoom';
+import DeleteRoom from './DeleteRoom';
 
 class RoomList extends Component {
   constructor(props) {
@@ -60,6 +61,7 @@ class RoomList extends Component {
         {this.state.rooms.map( room =>
           <div className={(this.props.activeRoom === room.key) ? "active-room room-row" : "room-row"} key={room.key} onClick={() => this.props.handleActiveRoom(room.key)}>
             {room.name}
+            <DeleteRoom />
           </div>
         )}
       </div>
