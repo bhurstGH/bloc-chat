@@ -61,7 +61,11 @@ class RoomList extends Component {
         {this.state.rooms.map( room =>
           <div className={(this.props.activeRoom === room.key) ? "active-room room-row" : "room-row"} key={room.key} onClick={() => this.props.handleActiveRoom(room.key)}>
             {room.name}
-            <DeleteRoom />
+            <DeleteRoom
+              firebase={this.props.firebase}
+              room={room}
+              deleteRoom={this.props.deleteRoom}
+            />
           </div>
         )}
       </div>

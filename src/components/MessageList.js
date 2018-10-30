@@ -52,16 +52,28 @@ scrollToLast() {
     return `${hours}:${minutes}${ampm} ${datestamp}`;
   }
 
+  handleDeleteMessage = (e, state, i) => {
+    if (e.shiftKey) {
+      this.props.deleteMessages(e, state, i);
+      const newState = this.props.deleteItem(state, i);
+      this.setState({ messages: newState });
+    }
+    console.log(e.shiftKey);
+    console.log(state);
+    console.log(i);
+  }
+
   render() {
     return (
       <div className="message-list">
-        {this.state.messages.map( message =>
+        {this.state.messages.map( (message, i) =>
           <div className="message-item" key={message.key}>
             <span className="message-username">{message.username + ": "}</span>
-            <p className="message-content">
+            <p className="message-content" onClick={(e) => this.handleDeleteMessage(e, this.state.messages, i)}>
               {message.content}
             </p>
             <span className="message-sentAt">{"(" + this.localTimeStamp(message.sentAt) + ")"}</span>
+
           </div>
         )}
         <div ref={last => { this.last = last; }} />

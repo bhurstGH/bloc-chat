@@ -33,6 +33,23 @@ class App extends Component {
     this.setState({ user: user });
   }
 
+  deleteItem = (stateItem, sIndex) => {
+    const newStateItem = stateItem.filter(item => item !== stateItem[sIndex]);
+    return newStateItem;
+  }
+
+  deleteRoom = (e, room, ref) => {
+    e.stopPropagation();
+    console.log(room);
+    console.log(ref.orderByKey().equalTo(room.key));
+  }
+
+  deleteMessages = (e, state, i) => {
+    const messagesRef = firebase.database().ref('messages/' + state[i].key);
+    messagesRef.remove();
+    this.deleteItem(state, i);
+  }
+
   render() {
     return (
       <div className="App">
@@ -40,12 +57,16 @@ class App extends Component {
           firebase={firebase}
           handleActiveRoom={(room) => this.handleActiveRoom(room)}
           activeRoom={this.state.activeRoom}
+          user={this.state.user}
+          deleteRoom={this.deleteRoom}
         />
         <div id="messages">
           <MessageList
             firebase={firebase}
             activeRoom={this.state.activeRoom}
             user={this.state.user}
+            deleteMessages={this.deleteMessages}
+            deleteItem={this.deleteItem}
          />
          <SendMessage
            firebase={firebase}

@@ -180,7 +180,7 @@ ul {
   text-align: center;
   width: .6em;
   height: 1em;
-  border: 1px solid darkorange;
+  border: 1px solid red;
   font-family: monospace, sans-serif;
   font-weight: bold;
   background: transparent;
@@ -192,15 +192,13 @@ ul {
 .delete-room:hover {
   transform: scale(1.5);
   width: 75px;
-  border: 2px solid blue;
   border-radius: 5px;
   background: orange;
 }
 .delete-room::after {
   content: 'elete';
-
-  transition: all 0.1s linear 0.1s;
   opacity: 0;
+  transition: all 0.1s linear 0.1s;
 }
 .delete-room:hover::after {
   transition: all 0.3s ease-out 0.3s;
