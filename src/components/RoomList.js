@@ -45,19 +45,20 @@ class RoomList extends Component {
   }
 
   handleDeleteRoom = (e, rooms, i) => {
-    e.stopPropagation();
-    const roomMessages = this.messagesRef.orderByChild('roomID').equalTo(rooms[i].key)
-    roomMessages.once('value').then( snapshot => {
-      snapshot.forEach(childsnap => {
+    if (this.props.user) {
+      e.stopPropagation();
+      const roomMessages = this.messagesRef.orderByChild('roomID').equalTo(rooms[i].key)
+      roomMessages.once('value').then( snapshot => {
+        snapshot.forEach(childsnap => {
           this.messagesRef.child(childsnap.key).remove();
         });
-    });
-    this.roomsRef.child(rooms[i].key).remove();
-    const newRooms = this.props.deleteItem(rooms, i);
-    this.setState({ rooms: newRooms });
-    this.props.handleActiveRoom(null);
+      });
+      this.roomsRef.child(rooms[i].key).remove();
+      const newRooms = this.props.deleteItem(rooms, i);
+      this.setState({ rooms: newRooms });
+      this.props.handleActiveRoom(null);
+    }
   }
-
   render() {
     return (
       <div className="room-list">
