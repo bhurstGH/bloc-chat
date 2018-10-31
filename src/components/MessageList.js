@@ -57,6 +57,8 @@ scrollToLast() {
       this.props.deleteMessages(e, state, i);
       const newState = this.props.deleteItem(state, i);
       this.setState({ messages: newState });
+    } else if (e.shiftKey) {
+      alert('Login to delete messages.')
     }
   }
 

@@ -39,7 +39,7 @@ class SendMessage extends Component {
           <textarea
             id="send-content" type="text"
             disabled={this.props.activeRoom ? false : true}
-            placeholder={this.props.activeRoom ? "Enter to send your message. Shift+Enter for a new line." : "Choose a room to start chatting!"}
+            placeholder={this.props.activeRoom ? "Enter to send your message. Shift+Enter for a new line. Shift+Click on message contents to delete a message." : "Choose a room to start chatting!"}
             value={this.state.messageContent}
             onChange={e => this.handleMessageContent(e)}
             onKeyDown={e => this.submitOnEnter(e)}

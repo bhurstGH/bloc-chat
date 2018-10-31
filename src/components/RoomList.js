@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CreateRoom from './CreateRoom';
 import DeleteRoom from './DeleteRoom';
+import RenameRoom from './RenameRoom';
 
 class RoomList extends Component {
   constructor(props) {
@@ -8,6 +9,10 @@ class RoomList extends Component {
     this.state = {
       rooms: [],
       showCreate: false,
+      showRename: {
+        show: false,
+        index: null
+      },
       newRoom: '',
     };
 
@@ -30,14 +35,36 @@ class RoomList extends Component {
         name: newRoom
       });
       this.cancelRoom();
-      this.setState({ newRoom: '' });
     } else {
     this.setState({ showCreate: true });
     }
   }
-
+  renameRoom = (e, rooms, i) => {
+    if (this.state.newRoom) {
+      e.preventDefault();
+      const newRooms = rooms.map(room => {
+        if (room.name === rooms[i].name) {
+          room.name = this.state.newRoom;
+        }
+        return room;
+      });
+      this.roomsRef.child(rooms[i].key).transaction(name => {
+        return { name: this.state.newRoom }
+      });
+      this.setState({ rooms: newRooms })
+      this.cancelRoom();
+    }
+  }
+  passRenameIndex = (e, i) => {
+    e.stopPropagation();
+    if (this.props.user) {
+      this.setState({ showRename: { show: true, index: i } });
+    } else {
+      alert('Login to rename rooms.');
+    }
+  }
   cancelRoom() {
-    this.setState({ showCreate: false });
+    this.setState({ showCreate: false, showRename: { show: false, index: null }, newRoom: '' });
   }
 
   handleRoomInput(e) {
@@ -45,8 +72,8 @@ class RoomList extends Component {
   }
 
   handleDeleteRoom = (e, rooms, i) => {
+    e.stopPropagation();
     if (this.props.user) {
-      e.stopPropagation();
       const roomMessages = this.messagesRef.orderByChild('roomID').equalTo(rooms[i].key)
       roomMessages.once('value').then( snapshot => {
         snapshot.forEach(childsnap => {
@@ -57,8 +84,11 @@ class RoomList extends Component {
       const newRooms = this.props.deleteItem(rooms, i);
       this.setState({ rooms: newRooms });
       this.props.handleActiveRoom(null);
+    } else {
+      alert('Login to delete rooms');
     }
   }
+
   render() {
     return (
       <div className="room-list">
@@ -82,8 +112,20 @@ class RoomList extends Component {
               rooms={this.state.rooms}
               handleDeleteRoom={this.handleDeleteRoom}
             />
+            <RenameRoom
+              roomIndex={i}
+              passRenameIndex={this.passRenameIndex}
+            />
           </div>
         )}
+        <CreateRoom
+          show={this.state.showRename.show}
+          cancelRoom={() => this.cancelRoom()}>
+          <form className='create-room-form' onSubmit={e => this.renameRoom(e, this.state.rooms, this.state.showRename.index)}>
+            <input type="text" value={this.state.newRoom} placeholder="Enter new room name" onChange={e => this.handleRoomInput(e)}/>
+            <input type="submit" value="Rename room"/>
+          </form>
+        </CreateRoom>
       </div>
     );
   }

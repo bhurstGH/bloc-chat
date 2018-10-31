@@ -116,6 +116,7 @@ ul {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
+  z-index: 2;
 }
 .do-not-display {
   display: none;
@@ -133,7 +134,7 @@ ul {
 }
 .cancel-room-button {
   position: fixed;
-  top: 135%;
+  top: 125%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #ef9d01;
@@ -176,7 +177,7 @@ ul {
 .active-room::after {
   content: ' >';
 }
-.delete-room {
+.delete-room, .rename-room {
   text-align: center;
   width: .6em;
   height: 1em;
@@ -186,19 +187,32 @@ ul {
   background: transparent;
   display: inline-block;
   position: absolute;
-  right: 1px;
+  right: 18px;
   transition: all 0.25s ease-out 0.2s;
+  z-index: 1;
 }
-.delete-room:hover {
+.rename-room {
+  border: 1px solid green;
+  right: 1px;
+  z-index: 0;
+}
+.delete-room:hover, .rename-room:hover {
   transform: scale(1.5);
   width: 75px;
   border-radius: 5px;
   background: orange;
+  z-index: 1;
 }
 .delete-room:hover::after {
   content: 'elete';
   margin-right: 20px;
-  animation: 2s fadeIn;
+  animation: 1s fadeIn;
+  animation-fill-mode: forwards;
+}
+.rename-room:hover::after {
+  content: 'ename';
+  margin-right: 20px;
+  animation: 1s fadeIn;
   animation-fill-mode: forwards;
 }
 @keyframes fadeIn {
