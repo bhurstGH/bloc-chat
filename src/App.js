@@ -38,16 +38,9 @@ class App extends Component {
     return newStateItem;
   }
 
-  deleteRoom = (e, room, ref) => {
-    e.stopPropagation();
-    console.log(room);
-    console.log(ref.orderByKey().equalTo(room.key));
-  }
-
   deleteMessages = (e, state, i) => {
     const messagesRef = firebase.database().ref('messages/' + state[i].key);
     messagesRef.remove();
-    this.deleteItem(state, i);
   }
 
   render() {
@@ -58,7 +51,7 @@ class App extends Component {
           handleActiveRoom={(room) => this.handleActiveRoom(room)}
           activeRoom={this.state.activeRoom}
           user={this.state.user}
-          deleteRoom={this.deleteRoom}
+          deleteItem={this.deleteItem}
         />
         <div id="messages">
           <MessageList

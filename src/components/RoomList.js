@@ -12,6 +12,7 @@ class RoomList extends Component {
     };
 
     this.roomsRef = this.props.firebase.database().ref('rooms');
+    this.messagesRef = this.props.firebase.database().ref('messages');
   }
 
   componentDidMount() {
@@ -43,6 +44,20 @@ class RoomList extends Component {
     this.setState({ newRoom: e.target.value });
   }
 
+  handleDeleteRoom = (e, rooms, i) => {
+    e.stopPropagation();
+    const roomMessages = this.messagesRef.orderByChild('roomID').equalTo(rooms[i].key)
+    roomMessages.once('value').then( snapshot => {
+      snapshot.forEach(childsnap => {
+          this.messagesRef.child(childsnap.key).remove();
+        });
+    });
+    this.roomsRef.child(rooms[i].key).remove();
+    const newRooms = this.props.deleteItem(rooms, i);
+    this.setState({ rooms: newRooms });
+    this.props.handleActiveRoom(null);
+  }
+
   render() {
     return (
       <div className="room-list">
@@ -58,13 +73,13 @@ class RoomList extends Component {
             <input type="submit" value="Create room"/>
           </form>
         </CreateRoom>
-        {this.state.rooms.map( room =>
+        {this.state.rooms.map( (room, i) =>
           <div className={(this.props.activeRoom === room.key) ? "active-room room-row" : "room-row"} key={room.key} onClick={() => this.props.handleActiveRoom(room.key)}>
             {room.name}
             <DeleteRoom
-              firebase={this.props.firebase}
-              room={room}
-              deleteRoom={this.props.deleteRoom}
+              roomIndex={i}
+              rooms={this.state.rooms}
+              handleDeleteRoom={this.handleDeleteRoom}
             />
           </div>
         )}

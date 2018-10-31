@@ -53,14 +53,11 @@ scrollToLast() {
   }
 
   handleDeleteMessage = (e, state, i) => {
-    if (e.shiftKey) {
+    if (e.shiftKey && this.props.user) {
       this.props.deleteMessages(e, state, i);
       const newState = this.props.deleteItem(state, i);
       this.setState({ messages: newState });
     }
-    console.log(e.shiftKey);
-    console.log(state);
-    console.log(i);
   }
 
   render() {
@@ -73,7 +70,6 @@ scrollToLast() {
               {message.content}
             </p>
             <span className="message-sentAt">{"(" + this.localTimeStamp(message.sentAt) + ")"}</span>
-
           </div>
         )}
         <div ref={last => { this.last = last; }} />

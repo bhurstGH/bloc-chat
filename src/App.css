@@ -195,14 +195,21 @@ ul {
   border-radius: 5px;
   background: orange;
 }
-.delete-room::after {
-  content: 'elete';
-  opacity: 0;
-  transition: all 0.1s linear 0.1s;
-}
 .delete-room:hover::after {
-  transition: all 0.3s ease-out 0.3s;
-  opacity: 1;
+  content: 'elete';
+  margin-right: 20px;
+  animation: 2s fadeIn;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      margin-right: 20px;
+    }
+    to {
+      opacity: 1;
+      margin-right: 0;
+    }
 }
 
 .room-row {
