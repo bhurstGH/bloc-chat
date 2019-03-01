@@ -1,4 +1,4 @@
-Welcome to my playground. The Bloc Chat app has been an environment to experiment with various facets of HTML, CSS, JavaScript/React, and Firebase.
+Welcome to my playground. The app has been an environment to experiment with various facets of HTML, CSS, JavaScript/React, and Firebase.
 
 It may not look pretty but I learned a great deal working through this Bloc project while putting my own spin on the requirements as well as my own decisions and design choices. Armed with that experience, I would definitely structure the application differently if I started over from scratch. I'm moving forward in my curriculum now but I would like to refactor much of what is here and implement more features (admins, user lists/active channel users, more ways to sign up and authenticate, etc).
 
