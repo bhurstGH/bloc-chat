@@ -6,7 +6,7 @@ My programming roots go back to the 90s with IRC and the mIRC client's proprieta
 
 Some personal highlites and takeaways from this project:
 
-* Learning to work with and utilize FLexbox in CSS.
+* Learning to work with and utilize Flexbox in CSS.
 * Experimenting with animations and transitions in CSS
 * Working with Firebase and its JavaScript implementations. Particularly user authentification and deleting/renaming database entries while syncing them with React state.
 * Really growing my understanding of React components and the state/props relationships between parents and children. Passing functions around in particular was enlightening not only about React itself but JavaScript and `this` as well.
