@@ -93,7 +93,7 @@ class RoomList extends Component {
     return (
       <div className="room-list">
         <div className="room-header">
-          <h1>Bloc Chat</h1>
+          <h1>FBR Chat</h1>
           <button className="create-room-button" type="button" onClick={() => this.createRoom()}>Create a room</button>
         </div>
         <CreateRoom
