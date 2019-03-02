@@ -13,3 +13,7 @@ Some personal highlites and takeaways from this project:
 * Getting the SendMessage textarea to work as I intended (Enter to submit, shift+enter for a new line, etc).
 * Arrow functions are cooler than I originally gave them credit for.
 * While I'm at it, `stopPropagation()` and JS destructuring are pretty swell too.
+
+***
+
+Now deployed on Herokiu: https://bhurstgh-fbr-chat.herokuapp.com/
